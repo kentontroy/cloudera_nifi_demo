@@ -17,5 +17,6 @@ ubuntu@ip-172-31-89-98:~/downloads$ sudo ./cloudera-manager-installer.bin
 
 Cloudera Manager http://localhost:7100 (admin/admin)
 
+ssh -i ./cloudera.pem -N -L 7100:ec2-3-238-246-65.compute-1.amazonaws.com:7100 ubuntu@ec2-3-238-246-65.compute-1.amazonaws.com
 
 
