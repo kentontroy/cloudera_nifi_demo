@@ -33,7 +33,7 @@ postgres  6107    cloudera-scm    4u  IPv6  35105      0t0  TCP *:7432 (LISTEN)
 java      6133    cloudera-scm  470u  IPv4  34358      0t0  TCP *:7182 (LISTEN)
 java      6133    cloudera-scm  475u  IPv4  38341      0t0  TCP *:7180 (LISTEN)
 
-ssh -i ./cloudera.pem -N -L 7180:ec2-3-238-246-65.compute-1.amazonaws.com:7180 ubuntu@ec2-3-238-246-65.compute-1.amazonaws.com
+ssh -i ./cloudera.pem -N -L 7180:ec2-3-238-247-189.compute-1.amazonaws.com:7180 ubuntu@ec2-3-238-247-189.compute-1.amazonaws.com
 
 https://www.whatsmyip.org
 
