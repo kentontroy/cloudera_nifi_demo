@@ -37,4 +37,62 @@ ssh -i ./cloudera.pem -N -L 7180:ec2-3-238-247-189.compute-1.amazonaws.com:7180 
 
 https://www.whatsmyip.org
 
+kentontroy@DESKTOP-9E2JM4U:~$ ssh -i ./cloudera.pem ubuntu@ec2-3-215-182-22.compute-1.amazonaws.com
+ubuntu@ip-172-31-90-124:~$ df -m
+Filesystem     1M-blocks  Used Available Use% Mounted on
+udev                7900     0      7900   0% /dev
+tmpfs               1583     2      1582   1% /run
+/dev/nvme0n1p1     29716 25563      4137  87% /
+
+In Cloudera Manager, go to Hosts tab.
+1. Stop the Roles on the host
+2. Remove the Host from the cluster
+3. Resize the file system
+4. 
+
+df -hT
+
+ubuntu@ip-172-31-90-124:~$ sudo growpart /dev/nvme0n1 1
+CHANGED: partition=1 start=2048 old: size=62912479 end=62914527 new: size=125827039,end=125829087
+
+ubuntu@ip-172-31-90-124:~$ sudo resize2fs /dev/nvme1n1
+
+
+Must have a quorum of at least three Journal Nodes. The Active Name Node writes all edits to a Journal Node and only issues a commit when
+all the edits have been replicated to other Journal Nodes. The Standby Name Node uses the Journal Node edits to keep in sync with the Active 
+Name Node.
+
+Zookeeper assists with cluster coordination and distributed configuration management. It can be used for leader election should an node runnnig
+an active service dies and another node wants to be promoted (e.g. Name Nodes, Kafka broker hosting the leader partition for a Kafka topic, etc.)
+ZKFailoverControllers can be used to maintain a lock on a Zookeeper zknode to identify which cluster node is the leader for a service. When that 
+lock disappears, other cluster nodes can contend to acquire the lock and be designated the leader.
+
+Use of Active / Standby Name Nodes requires a Name Service to be configured
+
+A Failover Controller should exist on each Name Node instance
+
+A Hive Gateway must exist on the Spark node so that Spark can read from Hive. The Gateway is used to propagate the Hive client configuration to cluster nodes
+
+To start the Spark History server:
+
+ubuntu@ip-172-31-90-124:~$ sudo -u hdfs hadoop fs -ls /user/spark/applicationHistory
+ls: `/user/spark/applicationHistory': No such file or directory
+ubuntu@ip-172-31-90-124:~$ sudo -u hdfs hadoop fs -mkdir /user/spark/applicationHistory
+ubuntu@ip-172-31-90-124:~$ sudo -u hdfs hadoop fs -ls hdfs://demo-nameservice/user/spark/
+Found 1 items
+drwxr-xr-x   - hdfs supergroup          0 2021-05-10 01:54 hdfs://demo-nameservice/user/spark/applicationHistory
+
+The Cloudera Manager Home page displays a listing of services and their status. Select the menu option next to each service to Start, Stop, and see more detail
+on the Instances. The Instances page enables you to see the one-to-many Roles for each Service. Each Cluster Node assuming one or more of those Roles.
+
+
+
+
+
+
+
+
+
+
+
 
