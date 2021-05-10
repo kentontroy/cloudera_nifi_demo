@@ -1,5 +1,9 @@
 ### EC2 Instance Mapping ###
 
+ip-172-31-86-76.ec2.internal
+ip-172-31-84-154.ec2.internal
+ip-172-31-82-207.ec2.internal
+ip-172-31-91-111.ec2.internal
 
 ### Access Example ###
 
