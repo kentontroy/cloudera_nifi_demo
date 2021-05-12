@@ -123,6 +123,8 @@ ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chown -R root:nifi /opt/nifi-1.13.
 
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
 
+Installing Nifi in a Cluster managed Zookeeper (Zero-Leader Cluster Paradigm)
+https://www.itpanther.com/installing-apache-nifi-cluster-on-linux/
 
 
 
