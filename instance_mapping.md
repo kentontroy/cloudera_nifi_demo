@@ -1,9 +1,12 @@
 ### EC2 Instance Mapping ###
 
-ip-172-31-86-76.ec2.internal
-ip-172-31-84-154.ec2.internal
-ip-172-31-82-207.ec2.internal
-ip-172-31-91-111.ec2.internal
+ec2-3-238-247-189.compute-1.amazonaws.com   ip-172-31-89-98.ec2.internal
+ec2-44-192-91-57.compute-1.amazonaws.com    ip-172-31-86-76.ec2.internal
+ec2-3-236-212-114.compute-1.amazonaws.com   ip-172-31-89-114.ec2.internal
+ec2-3-236-144-131.compute-1.amazonaws.com   ip-172-31-84-154.ec2.internal
+ec2-3-226-72-155.compute-1.amazonaws.com    ip-172-31-82-207.ec2.internal
+ec2-3-236-16-30.compute-1.amazonaws.com     ip-172-31-91-111.ec2.internal
+
 
 ### Access Example ###
 
@@ -88,6 +91,46 @@ drwxr-xr-x   - hdfs supergroup          0 2021-05-10 01:54 hdfs://demo-nameservi
 
 The Cloudera Manager Home page displays a listing of services and their status. Select the menu option next to each service to Start, Stop, and see more detail
 on the Instances. The Instances page enables you to see the one-to-many Roles for each Service. Each Cluster Node assuming one or more of those Roles.
+
+kdavis-MBP15:Cloudera kdavis$ ssh -i ./cloudera.pem ubuntu@ec2-3-238-247-189.compute-1.amazonaws.com
+
+http://nifi.apache.org/docs.html
+
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo apt update
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo apt install default-jdk
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ java -version
+openjdk version "11.0.11" 2021-04-20
+
+
+
+ubuntu@ip-172-31-89-98:~$ cd downloads
+ubuntu@ip-172-31-89-98:~/downloads$ wget https://apache.claz.org/nifi/1.13.2/nifi-1.13.2-bin.tar.gz
+ubuntu@ip-172-31-89-98:~/downloads$ wget https://apache.claz.org/nifi/1.13.2/nifi-toolkit-1.13.2-bin.tar.gz
+ubuntu@ip-172-31-89-98:~/downloads$ gunzip *
+ubuntu@ip-172-31-89-98:~/downloads$ tar xvf nifi-1.13.2-bin.tar
+ubuntu@ip-172-31-89-98:~/downloads$ sudo mv nifi-1.13.2 /opt
+ubuntu@ip-172-31-89-98:~$ cd /opt/nifi-1.13.2
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo ./bin/nifi.sh install dataflow
+
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo vi /root/.bashrc
+# Demo settings
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo groupadd nifi
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo usermod -a -G nifi ubuntu
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chmod -R 775 /opt/nifi-1.13.2
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chown -R root:nifi /opt/nifi-1.13.2
+
+ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
+
+
+
+
+
+
+
+
+
 
 
 
