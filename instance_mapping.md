@@ -126,6 +126,23 @@ ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
 Installing Nifi in a Cluster managed Zookeeper (Zero-Leader Cluster Paradigm)
 https://www.itpanther.com/installing-apache-nifi-cluster-on-linux/
 
+# Install Magenta and TensorFlow dependencies
+ubuntu@ip-172-31-89-98:~$ sudo apt-get update -qq && sudo apt-get install -qq libfluidsynth1 fluid-soundfont-gm build-essential libasound2-dev libjack-dev
+ubuntu@ip-172-31-89-98:~$ sudo apt install python3-pip
+ubuntu@ip-172-31-89-98:~$ pip3 install --upgrade pip
+ubuntu@ip-172-31-89-98:~$ pip3 install -qU pyfluidsynth pretty_midi
+ubuntu@ip-172-31-89-98:~$ pip3 install -qU tensorflow
+ubuntu@ip-172-31-89-98:~$ pip3 install -qU tensorflow-addons
+ubuntu@ip-172-31-89-98:~$ pip3 install --ignore-installed -qU magenta
+
+
+
+
+
+
+
+
+
 
 
 
