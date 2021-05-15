@@ -40,7 +40,20 @@ postgres  6107    cloudera-scm    4u  IPv6  35105      0t0  TCP *:7432 (LISTEN)
 java      6133    cloudera-scm  470u  IPv4  34358      0t0  TCP *:7182 (LISTEN)
 java      6133    cloudera-scm  475u  IPv4  38341      0t0  TCP *:7180 (LISTEN)
 
+Cloudera Manager
 ssh -i ./cloudera.pem -N -L 7180:ec2-3-238-247-189.compute-1.amazonaws.com:7180 ubuntu@ec2-3-238-247-189.compute-1.amazonaws.com
+
+Streaming Message Manager
+ssh -i ./cloudera.pem -N -L 9991:ec2-3-236-211-223.compute-1.amazonaws.com:9991 ubuntu@ec2-3-236-211-223.compute-1.amazonaws.com
+
+At the instance level, change the Kafka configuration for advertised.host.name to be set to a publicly resolvable name (not IP)
+
+Create an advanced configuration snippet (i.e. a safety valve) containing:
+
+listeners=PLAINTEXT://0.0.0.0:9092,SSL://0.0.0.0:9093
+
+kdavis-MBP15:src kdavis$ export CONFLUENT_HOME=${HOME}/Documents/Confluent_Server/CPE/confluent-5.3.0
+kdavis-MBP15:src kdavis$ export PATH=$CONFLUENT_HOME/bin:$PATH
 
 https://www.whatsmyip.org
 
@@ -144,7 +157,7 @@ version=0
 broker.id=1546335377
 
 ubuntu@ip-172-31-84-154:~$ sudo rm /var/local/kafka/data/meta.properties
-
+ubuntu@ip-172-31-86-76:~$ sudo rm /var/local/kafka/data/meta.properties
 
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
 
