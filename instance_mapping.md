@@ -121,6 +121,31 @@ ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo usermod -a -G nifi ubuntu
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chmod -R 775 /opt/nifi-1.13.2
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chown -R root:nifi /opt/nifi-1.13.2
 
+# Kafka installation
+
+ubuntu@ip-172-31-84-154:~$ ./zookeeper-client
+[zk: localhost:2181(CONNECTED) 3] ls /
+[confstore, hadoop-ha, hbase, hiveserver2, hiveserver2-leader, kafka, rmstore, solr-infra, yarn-leader-election, zookeeper]
+[zk: localhost:2181(CONNECTED) 4] ls /kafka
+[admin, brokers, cluster, config, consumers, controller_epoch, delegation_token, isr_change_notification, latest_producer_id_block, log_dir_event_notification]
+
+[zk: localhost:2181(CONNECTED) 7] delete /kafka/cluster/id
+[zk: localhost:2181(CONNECTED) 14] sync /kafka/cluster
+[zk: localhost:2181(CONNECTED) 15] Sync returned 0
+
+ubuntu@ip-172-31-84-154:~$ sudo find / -name meta.properties
+/var/local/kafka/data/meta.properties
+
+ubuntu@ip-172-31-84-154:~$ cat /var/local/kafka/data/meta.properties
+#
+#Mon May 10 12:43:14 UTC 2021
+cluster.id=qy6uhwp3StqgcaiJBlkYrg
+version=0
+broker.id=1546335377
+
+ubuntu@ip-172-31-84-154:~$ sudo rm /var/local/kafka/data/meta.properties
+
+
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
 
 Installing Nifi in a Cluster managed Zookeeper (Zero-Leader Cluster Paradigm)
