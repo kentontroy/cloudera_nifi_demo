@@ -66,6 +66,7 @@ https://spark.apache.org/docs/2.0.0/api/python/pyspark.streaming.html#module-pys
 https://docs.microsoft.com/en-us/learn/modules/perform-advanced-streaming-data-transformations-with-spark-kafka/4-describe-spark-structured-streaming
 https://stackoverflow.com/questions/51525042/how-to-transform-structured-streams-with-pyspark
 https://dzone.com/articles/apache-flink-with-kafka-consumer-and-producer
+https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-window-functions
 
 # Prepare the pyspark environment
 
