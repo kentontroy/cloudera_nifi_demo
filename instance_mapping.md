@@ -63,6 +63,9 @@ https://www.rittmanmead.com/blog/2017/01/getting-started-with-spark-streaming-wi
 https://spark.apache.org/docs/2.0.0/streaming-kafka-integration.html
 https://spark.apache.org/docs/2.0.0-preview/api/python/_modules/pyspark/streaming/kafka.html
 https://spark.apache.org/docs/2.0.0/api/python/pyspark.streaming.html#module-pyspark.streaming
+https://docs.microsoft.com/en-us/learn/modules/perform-advanced-streaming-data-transformations-with-spark-kafka/4-describe-spark-structured-streaming
+https://stackoverflow.com/questions/51525042/how-to-transform-structured-streams-with-pyspark
+https://dzone.com/articles/apache-flink-with-kafka-consumer-and-producer
 
 # Prepare the pyspark environment
 
@@ -155,10 +158,13 @@ ubuntu@ip-172-31-89-98:~/downloads$ sudo mv nifi-1.13.2 /opt
 ubuntu@ip-172-31-89-98:~$ cd /opt/nifi-1.13.2
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo ./bin/nifi.sh install dataflow
 
+Change nifi.web.http.host=0.0.0.0 in /opt/nifi-1.13.2/conf/nifi.properties
+
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ ./bin/nifi.sh start
 
 Installing Nifi in a Cluster managed Zookeeper (Zero-Leader Cluster Paradigm)
 https://www.itpanther.com/installing-apache-nifi-cluster-on-linux/
+
 
 ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo vi /root/.bashrc
 
@@ -172,14 +178,14 @@ ubuntu@ip-172-31-89-98:/opt/nifi-1.13.2$ sudo chown -R root:nifi /opt/nifi-1.13.
 
 # Kafka installation
 
-ubuntu@ip-172-31-84-154:~$ ./zookeeper-client
+ubuntu@ip-172-31-84-154:~$ zookeeper-client
 [zk: localhost:2181(CONNECTED) 3] ls /
 [confstore, hadoop-ha, hbase, hiveserver2, hiveserver2-leader, kafka, rmstore, solr-infra, yarn-leader-election, zookeeper]
 [zk: localhost:2181(CONNECTED) 4] ls /kafka
 [admin, brokers, cluster, config, consumers, controller_epoch, delegation_token, isr_change_notification, latest_producer_id_block, log_dir_event_notification]
 
 [zk: localhost:2181(CONNECTED) 7] delete /kafka/cluster/id
-[zk: localhost:2181(CONNECTED) 14] sync /kafka/cluster
+[zk: localhost:2181(CONNECTED) 14] sync/kafka/cluster
 [zk: localhost:2181(CONNECTED) 15] Sync returned 0
 
 ubuntu@ip-172-31-84-154:~$ sudo find / -name meta.properties
